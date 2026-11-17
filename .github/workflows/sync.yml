@@ -42,3 +42,11 @@ jobs:
             fi
             git push origin main
           fi
+
+      - name: Trigger Cloudflare Pages deployment
+        if: ${{ success() }}
+        env:
+          DEPLOY_HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          test -n "$DEPLOY_HOOK"
+          curl --fail --silent --show-error --request POST "$DEPLOY_HOOK"

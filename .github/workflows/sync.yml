@@ -1,3 +1,4 @@
+
 name: Upstream Sync
 
 permissions:
@@ -49,4 +50,4 @@ jobs:
           DEPLOY_HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
         run: |
           test -n "$DEPLOY_HOOK"
-          curl --fail --silent --show-error --request POST "$DEPLOY_HOOK"
+          curl --fail --silent --show-error --data "" "$DEPLOY_HOOK"
